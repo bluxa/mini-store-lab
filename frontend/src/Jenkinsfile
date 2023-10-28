@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Clona el repositorio o realiza la acción necesaria para obtener el código fuente
+                // git 'URL_DEL_REPOSITORIO'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                // Instala las dependencias del proyecto usando npm
+                sh 'npm install'
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                // Ejecuta las pruebas utilizando npm test
+                sh 'npm test'
+            }
+        }
+
+        stage('Build and Deploy') {
+            steps {
+                // Agrega los pasos para construir y desplegar tu aplicación si las pruebas pasan
+                // sh 'npm run build'
+                // Agrega pasos para desplegar tu aplicación
+            }
+        }
+    }
+
+    post {
+        failure {
+            // Acciones a realizar si alguna de las etapas falla
+            echo 'Algo salió mal. ¡Verifica los resultados de las pruebas!'
+        }
+    }
+}
